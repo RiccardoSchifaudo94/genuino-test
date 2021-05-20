@@ -24,8 +24,30 @@ export default function index({users, setUsers, showUsers, setShowUsers, enabled
 
     }
 
+    const getAllUsers = async() =>{
+        setShowUsers(false);
+      
+        const get_all_users = "https://gorest.co.in/public-api/users";
+        const res = await fetch(get_all_users);
+        console.log(get_all_users);
+        await res.json().then((data)=>{
+            setUsers(data);
+            setShowUsers(true);
+            setEnabledSearchBar(false);
+            setCurrentPage(1);
+            setSearchQuery("");
+        });
+
+    }
+
     const saveSearchKeyword = (keyword) =>{
         setSearchQuery(keyword);
+    }
+
+    const resetSearch = () =>{
+        var x = confirm("Do you want to reset?");
+        
+        if(x) getAllUsers();
     }
 
 
@@ -33,6 +55,7 @@ export default function index({users, setUsers, showUsers, setShowUsers, enabled
         <div className="search_box">
             <input type="text" value={nameQuery} onChange={(e)=>{saveSearchKeyword(e.target.value)}}/>
             <button onClick={()=>{ searchUsersByName()}}>Search User</button>
+            <button onClick={()=>{ resetSearch()}}>Reset</button>
         </div>
     )
 }
