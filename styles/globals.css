@@ -29,6 +29,7 @@ header ul li{
   align-items: center;
   align-content: center;
   padding: 10px;
+  margin-bottom: 30px;
 }
 .search_box input{
   height: 40px;
@@ -56,6 +57,9 @@ header ul li{
 }
 table{
   margin: 0 auto;
+  max-width:1170px;
+  width:100%;
+  overflow-x: scroll;
 }
 td {
   text-align: center;
@@ -88,28 +92,43 @@ tr{
 .paginator_container{
   max-width:1170px;
   display: inline;
+  text-align: center;
+  margin: 0 auto;
 }
 .paginator {
-  display: flex;
-  flex-direction: row;
-  list-style-type: none;
-  justify-content: center;
-  margin: 30px auto;
+  display: -moz-box;
+  /* display: flex; */
+  -moz-box-orient: horizontal;
+  -moz-box-direction: normal;
+  /* flex-direction: row; */
+  /* list-style-type: none; */
+  -moz-box-pack: center;
+  /* justify-content: center; */
+  /* margin: 30px auto; */
+  display: inline-block;
+  margin: 30px auto 20px;
+  border-top: 1px solid #404040;
+  border-bottom: 1px solid #404040;
+  padding: 20px 10px;
 }
 
 .paginator .page_item{
   background-color: #f2f2f2;
   color: #252525;
   font-weight: 500;
-  padding:10px;
-  margin-left: 3px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-bottom:5px;
   cursor: pointer;
+  list-style-type: none;
+  float: left;
+  width:40px;
+  text-align: center;
 }
 .paginator .page_active{
   background-color: #252525;
   color: #ccc;
-  padding: 10px 15px;
-  border-bottom: 3px solid #252525;
+  padding: 10px;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -117,7 +136,7 @@ tr{
   align-content: center;
 }
 .page_nav{
-    display: flex;
+    display: none;
     align-items: center;
     background: black;
     justify-content: center;
@@ -127,4 +146,12 @@ tr{
     font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
+}
+.paginator_totals{
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 4px;
+  font-size:24px;
+  font-weight: 300;
+  margin-bottom: 30px;
 }
