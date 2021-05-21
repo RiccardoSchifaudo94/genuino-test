@@ -3,6 +3,9 @@ import Paginator from '../Paginator';
 import Search from '../Search';
 import Loading from '../Loading';
 
+
+import Link from "next/link";
+
 export default function index() {
 
     const [users, setUsers ] = useState();
@@ -104,7 +107,15 @@ export default function index() {
                                                                                 <td>{user.email.substring(0,50)}</td>
                                                                                 <td>{user.gender}</td>
                                                                                 <td>{user.status}</td>
-                                                                                <td><button>View more</button></td>
+                                                                                <td>
+                                                                                    <Link
+                                                                                        href={{
+                                                                                            pathname: "/profile",
+                                                                                            query: { id: `${user.id}` },
+                                                                                        }}>
+                                                                                         <button>View more{" "}<i className="fa fa-eye" style={{position:"relative",top:"1px",marginLeft:"3px"}}></i></button>
+                                                                                    </Link>
+                                                                                </td>
                                                                             </tr>
                                                                             )
                                                                         )

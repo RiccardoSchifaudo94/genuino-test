@@ -1,16 +1,13 @@
 import React from 'react';
 import Header from '../components/Header';
-import List from '../components/List';
+import Profile from '../components/Profile';
 
-
-export default function Home() {
-
-  return (
-    <div>
+export default function profile() {
+   
+    return (
         <div className="container">  
           <Header/>
-          <List/>
+          <Profile/>
         </div>
-    </div>
-  )
+    )
 }

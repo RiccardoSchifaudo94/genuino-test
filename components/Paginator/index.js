@@ -6,7 +6,7 @@ export default function index({usersPerPage, totalPages, totalResults , paginate
 
     const pageNumbers =  [];
     
-    for(let i = 1; i <= totalPages; i++ ){
+    for(let i = 1; i <= totalPages; i++){
 
         pageNumbers.push(i);
         
@@ -27,7 +27,7 @@ export default function index({usersPerPage, totalPages, totalResults , paginate
     }
 
     return (
-        <div style={{margin:"0 auto"}}>
+        <div style={{margin:"0 auto", textAlign:"center"}}>
             {
                 (totalPages>1)&&(
                     <nav>
