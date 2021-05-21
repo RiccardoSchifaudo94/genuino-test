@@ -46,7 +46,20 @@ export default function index({users, setUsers, showUsers, setShowUsers, enabled
 
     return (
         <div className="search_box">
-            <input type="text" value={nameQuery} onChange={(e)=>{saveSearchKeyword(e.target.value)}}/>
+            <input  type="text" 
+                    value={nameQuery} 
+                    placeholder="Search by name..." 
+                    onChange={
+                                (e)=>{
+                                        saveSearchKeyword(e.target.value)
+                                }
+                    } 
+                    onKeyPress={       
+                                    (e) =>  { 
+                                                if(e.key==='Enter') 
+                                                searchUsersByName(); 
+                                    }
+                    }/>
             <button onClick={()=>{ searchUsersByName()}}>Search User{"  "}<i className="fa fa-search" style={{position:"relative",top:"2px"}}></i></button>
             <button onClick={()=>{ resetSearch()}}>Reset{"  "}<i className="fa fa-eraser" style={{position:"relative",top:"0"}}></i></button>
         </div>

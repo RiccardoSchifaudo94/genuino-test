@@ -22,16 +22,11 @@ export default function index() {
         get_users(pageNumber);
       else
         get_users_by_name_paginate(nameQuery,pageNumber);
-
-    
-        console.log("enebled search status =>");
-        console.log(enabledSearchBar);
     }
 
     const get_users = async(id) => {
         let search_query = "https://gorest.co.in/public-api/users?page=" + id;
-        console.log("search query =>");
-        console.log(search_query);
+    
         const res = await fetch(search_query);
         await res.json().then((data)=>{
             console.table(data);
@@ -44,15 +39,10 @@ export default function index() {
         setShowUsers(false);
         const string_user_by_name = "https://gorest.co.in/public-api/users?name=" + nameQuery+"&page="+id;
         const res = await fetch(string_user_by_name);
-        console.log("search query =>");
-        console.log(string_user_by_name);
+    
         await res.json().then((data)=>{
             setUsers(data);
             setShowUsers(true);
-            console.log("user state after search =>");
-            console.log(users);
-            console.log("enebled search status =>");
-            console.log(enabledSearchBar);
         });
 
     }
@@ -101,20 +91,34 @@ export default function index() {
                                                                 <tbody>
                                                                     {
                                                                         users.data.map((user, key)=>(
-                                                                            <tr key={key}>
+                                                                            <tr key={key} style={`${key}`%2===0 ? {backgroundColor:"#f1f1f1"} : {} }>
                                                                                 <td>{user.id}</td>
                                                                                 <td>{user.name.substring(0,50)}</td>
                                                                                 <td>{user.email.substring(0,50)}</td>
                                                                                 <td>{user.gender}</td>
                                                                                 <td>{user.status}</td>
                                                                                 <td>
-                                                                                    <Link
-                                                                                        href={{
-                                                                                            pathname: "/profile",
-                                                                                            query: { id: `${user.id}` },
-                                                                                        }}>
-                                                                                         <button>View more{" "}<i className="fa fa-eye" style={{position:"relative",top:"1px",marginLeft:"3px"}}></i></button>
-                                                                                    </Link>
+                                                                                    {
+                                                                                        (user.status==="Active") 
+                                                                                            ? 
+                                                                                                (<Link
+                                                                                                        href={{
+                                                                                                            pathname: "/profile",
+                                                                                                            query: { id: `${user.id}` },
+                                                                                                        }}>
+                                                                                                        <button>
+                                                                                                                View more{" "}
+                                                                                                                <i className="fa fa-eye" style={{    
+                                                                                                                                                    position:"relative",
+                                                                                                                                                    top:"1px",
+                                                                                                                                                    marginLeft:"3px"
+                                                                                                                                                }}></i>
+                                                                                                        </button>
+                                                                                                    </Link>
+                                                                                                )
+                                                                                            :(<button style={{backgroundColor:"lightgray",color:"black"}} onClick={()=>{alert("Sorry, this user is Inactive!")}}>Not allowed!</button>)
+                                                                                        }
+                                                                                    
                                                                                 </td>
                                                                             </tr>
                                                                             )

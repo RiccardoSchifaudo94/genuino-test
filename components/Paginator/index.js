@@ -20,10 +20,10 @@ export default function index({usersPerPage, totalPages, totalResults , paginate
     }, [pageNumbers])
     
     const shifPage = () =>{
-        alert("shift");
+
         pageNumbers.push(pageNumbers[pageNumbers.length - 1] + 1);
         pageNumbers.shift();
-        console.log(pageNumbers);
+
     }
 
     return (
